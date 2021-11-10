@@ -3,7 +3,7 @@
 ## How
 
 1. Clone this very rep to your machine - `git clone https://github.com/cheshi-mantu/shell-scripts-testops.git`
-2. Copy get-logs.sh to docker-compose files directory
+2. Copy `get-logs.sh` to docker-compose config files directory
    - this is the directory where you have `.env` and `docker-compose.yml`
    - scripts needs to be in the same folder as the files above to get Allure TestOps release installed from `.env`
    - scripts needs to be in the same folder to get services names from docker-compose.yml
