@@ -6,12 +6,12 @@ ARR_VER=(${VERSION_STRING//=/ })
 TESTOPS_VERSION=${ARR_VER[1]}
 echo "Allure TestOps version from .env is $TESTOPS_VERSION"
 
-
 #getting the list of all the docker containers
 
 SERVICES_LIST=$(docker-compose config --services)
 
-echo "Trying to get the log for these services: ${SERVICES_LIST}"
+echo "Trying to get the log for these services: "
+echo "${SERVICES_LIST}"
 
 TIME_STAMP=$(date +%Y%m%d-%H%M%S)
 
@@ -31,6 +31,33 @@ EOF
 
 echo "Saved logs to rabbit-queues-${TIME_STAMP}.txt"
 
+
+echo "Getting environement information" 
+
+echo "### Creating file with the environment info ${TIME_STAMP}"
+ENV_FILE=env-$TIME_STAMP.txt
+
+echo "### Creating file with the environment info for Allure TestOps troubleshooting" > $ENV_FILE
+
+echo "### Saving RAM info as 'free -h | grep -v +'"
+free -h | grep -v +  |& tee -a $ENV_FILE
+echo "### Saving RAM info from top command" |& tee -a $ENV_FILE
+top -n 1 -b | sed -n '1,6p'|& tee -a $ENV_FILE
+
+# cat /etc/os-release | grep 'NAME\|VERSION' | grep -v 'VERSION_ID' | grep -v 'PRETTY_NAME'
+# uname -m
+
+echo "### Saving storage information" |& tee -a $ENV_FILE
+df -h |& tee -a $ENV_FILE
+echo "### Saving inodes information" |& tee -a $ENV_FILE
+df -i |& tee -a $ENV_FILE
+
+echo "### Getting the HW listing (CPU via lscpu)" |& tee -a $ENV_FILE
+lscpu | grep 'Architecture\|CPU(s)\|CPU max MHz' |& tee -a $ENV_FILE
+echo "### Getting the HW listing (CPU, RAM, Network via lshw)" |& tee -a $ENV_FILE
+lshw | grep -E -i "(\-cpu|\-memory|size|network|capacity)" |& tee -a $ENV_FILE
+
+
 # creating single archive
 ARCHIVE=$(date +%Y%m%d-%H%M)-testops-$TESTOPS_VERSION.tar.gz
 echo "Creating single archive with all logs - ${ARCHIVE}"
@@ -41,6 +68,7 @@ if [ "$?" -eq "0" ]
 then
   rm -f ./*.txt
 fi
+
 
 echo "Now, you can restart your Allure TestOps installation"
 echo "1. docker-compose down"
