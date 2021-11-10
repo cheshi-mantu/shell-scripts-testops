@@ -17,8 +17,9 @@ then
             echo "Backing up ${PWD##*/}_${volume} to ./backup dir"
             docker run -v ${PWD##*/}_${volume}:/volume -v ${PWD}/backup:/backup --rm loomchild/volume-backup backup ${PWD##*/}_${volume}
         done
-        echo "Bringing docker-compose back on-line via 'up -d'"
-        docker-compose up -d
+        echo "Bring docker-compose back on-line if you need via 'up -d'"
+        sleep 60
+        #docker-compose up -d
     else
         clear        
         echo "You need to install 'yq'"
