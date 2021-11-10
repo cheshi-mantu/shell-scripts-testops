@@ -10,8 +10,8 @@ then
         echo "Properly shutting down docker-compose via 'down' command"
         docker-compose down
 
-        volumes_list=$(yq eval '.volumes' docker-compose.yml | tr \: "")
-        echo "These will be backed up"
+        volumes_list=$(yq eval '.volumes' docker-compose.yml | tr \: " ")
+        echo "These will be restored"
         echo "${volumes_list}"
         for volume in ${volumes_list}
         do
