@@ -23,6 +23,7 @@ To allow easy move of Allure TestOps installation via docker-compose from one ma
 6. Execute `docker login --username qametaaccess`, enter your password.
 7. Execute `docker-compose up -d`
 8. Wait till Allure TestOps is fully up and running.
+   - give it 2-3 minutes to start up
    - check the readiness: `clear && docker-compose logs | grep "is running!"`
    - you must see 3 lines 
 9.  Run `./restore.sh`
