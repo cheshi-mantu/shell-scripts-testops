@@ -48,7 +48,7 @@ top -n 1 -b | sed -n '1,6p'|& tee -a $ENV_FILE
 # uname -m
 
 echo "### Saving storage information" |& tee -a $ENV_FILE
-df -h |& tee -a $ENV_FILE
+df -h --total |& tee -a $ENV_FILE
 echo "### Saving inodes information" |& tee -a $ENV_FILE
 df -i |& tee -a $ENV_FILE
 
