@@ -47,7 +47,7 @@ the command above will produce similar output (check the comments):
 - 31860_uaa-db_1 - will be referenced as **uaa-db**
 - 31860_report-s3_1 - will be referenced as **report-s3**
 
-## Get the passwords for the databases
+## Get the usernames and passwords for the databases
 
 ```bash
 docker-compose config | grep -e 'uaa:\|report:\|SPRING_DATASOURCE_USERNAME:\|SPRING_DATASOURCE_PASSWORD:'
