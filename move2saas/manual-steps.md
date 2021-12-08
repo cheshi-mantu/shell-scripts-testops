@@ -116,3 +116,9 @@ rm -frd ${PWD}/backup/s3/.minio.sys
 ```bash
 tar -zcvf testops2cloud.tar.gz backup/
 ```
+
+## Provide data to the tech support as a link to cloud storage
+
+1. Upload created archive to a cloud storage (Google Drive, OneDrive whatsoever)
+2. Share to "anyone with the link" as reader.
+3. Provide the link to tech support
