@@ -122,3 +122,4 @@ tar -zcvf testops2cloud.tar.gz backup/
 1. Upload created archive to a cloud storage (Google Drive, OneDrive whatsoever)
 2. Share to "anyone with the link" as reader.
 3. Provide the link to tech support
+4. Provide the information on the installed release (it's very important!!!).
