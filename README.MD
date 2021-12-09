@@ -29,7 +29,7 @@ Refer [to manual-steps.md](./move2saas/manual-steps.md) to prepare the data manu
 
 ## v-backup-restore
 
-This is a set of scripts allowing you to create full backups of the content of the volumes used in Allure TestOps docker-compose deployment.
+This is a set of scripts allowing you to create full backups of the content of the volumes used in Allure TestOps docker-compose deployment. So you can easily move Allure TestOps from one machine to another, e.g. from a weak server you've used for trial to a viking server to be used for the production, eh?
 
 ### Content
 
