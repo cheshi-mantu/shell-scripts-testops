@@ -11,22 +11,22 @@ To allow easy move of Allure TestOps installation via docker-compose from one ma
 
 ## How
 
-1. Copy both `backup.sh` and `restore.sh` to the directory with `docker-compose.yml` and `.env`
-2. On source machine make `backup.sh` executable like `chmod -x backup.sh`
-3. Run `./backup.sh`
+1. Copy both `vbackup.sh` and `vrestore.sh` to the directory with `docker-compose.yml` and `.env`
+2. On source machine make `vbackup.sh` executable like `chmod -x vbackup.sh`
+3. Run `./vbackup.sh`
 4. Copy full directory to target machine
    - `.env` file
    - `docker-compose.yml` file
    - newly created `backup` directory with all archives
-   - `backup.sh` and `restore.sh`
-5. On target machine  make `restore.sh` executable like `chmod -x restore.sh`
+   - `vbackup.sh` and `vrestore.sh`
+5. On target machine  make `vrestore.sh` executable like `chmod -x vrestore.sh`
 6. Execute `docker login --username qametaaccess`, enter your password.
 7. Execute `docker-compose up -d`
 8. Wait till Allure TestOps is fully up and running.
    - give it 2-3 minutes to start up
    - check the readiness: `clear && docker-compose logs | grep "is running!"`
    - you must see 3 lines 
-9.  Run `./restore.sh`
+9.  Run `./vrestore.sh`
 
 ## Installation of `yq`
 

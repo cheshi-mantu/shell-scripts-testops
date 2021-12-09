@@ -1,6 +1,12 @@
-# getting logs for Allure TestOps in docker-compose deployment
+# Getting logs for Allure TestOps in docker-compose deployment
 
 ## How
+
+### Important
+
+Allure TestOps must be running. So if it is malfunctioning, you need to collect the logs, then restart, not in a reverse order.
+
+### Steps
 
 1. Clone this very rep to your machine - `git clone https://github.com/cheshi-mantu/shell-scripts-testops.git`
 2. Copy `get-logs.sh` to docker-compose config files directory
