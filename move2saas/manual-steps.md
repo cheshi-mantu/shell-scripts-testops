@@ -78,7 +78,7 @@ Just in case.
 We are executing this command for the report-db container referenced earlier as **report-db**. you need to use the real name of container you have.
 
 ```bash
-docker exec -t report-db pg_dump -Fc -U report report > ${PWD}/backup/databases/report_db_pg_dump.sql
+docker exec -t report-db pg_dump -U report report > ${PWD}/backup/databases/report_db_pg_dump.sql
 ```
 
 Replace **report** in `-U report` with the real name of the DB user if you've changed it during the deployment.
@@ -90,7 +90,7 @@ We are executing this command for the report-db container referenced earlier as 
 Replace **uaa** in `-U uaa` with the real name of the DB user if you've changed it during the deployment.
 
 ```bash
-docker exec -t uaa-db pg_dump -Fc -U uaa uaa > ${PWD}/backup/databases/uaa_db_pg_dump.sql
+docker exec -t uaa-db pg_dump -U uaa uaa > ${PWD}/backup/databases/uaa_db_pg_dump.sql
 ```
 
 ## Backing up the content of S3

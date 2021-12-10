@@ -63,13 +63,16 @@ else
 fi    
 
 echo "Dumping report's database using pg_dump -Fc"
-docker exec -t ${REPORT_DB} pg_dump -Fc -U ${R_DB_USERNAME[0]} report > ${PWD}/backup/databases/report_db_pg_dump.sql
+docker exec -t ${REPORT_DB} pg_dump -U ${R_DB_USERNAME[0]} report > ${PWD}/backup/databases/report_db_pg_dump.sql
 
 echo "Dumping uaa's database using pg_dump -Fc"
-docker exec -t ${UAA_DB} pg_dump -Fc -U ${U_DB_USERNAME} uaa > ${PWD}/backup/databases/uaa_db_pg_dump.sql
+docker exec -t ${UAA_DB} pg_dump -U ${U_DB_USERNAME} uaa > ${PWD}/backup/databases/uaa_db_pg_dump.sql
 
 echo "Creating a copy of S3 files from ${REPORT_S3}"
 docker cp ${REPORT_S3}:/data/. ${PWD}/backup/s3
+
+# overriding, if a client has old cfg with FS instead of report-s3
+
 
 rm -frd ${PWD}/backup/s3/.minio.sys
 echo "Creating the single archive fo"
