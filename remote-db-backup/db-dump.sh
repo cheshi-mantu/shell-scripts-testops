@@ -29,12 +29,6 @@ if [ -e "docker-compose.yml" ]; then
     export PGPASSWORD=${DB_PASS}
     
     pg_dump -h ${IP_ADDR[0]} -p ${IP_ADDR[1]} -Fc -U ${DB_USERNAME} report > report_db.sql | tar czf
-    
-    
-    
-    
-    
-    
     else 
         clear
         echo "You need to install 'yq'"
