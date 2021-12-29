@@ -1,10 +1,13 @@
 #!/bin/bash
 
 echo "Getting Allure TestOps version from .env"
-VERSION_STRING=$(awk 'NR==1' .env)
-ARR_VER=(${VERSION_STRING//=/ })
-TESTOPS_VERSION=${ARR_VER[1]}
+TESTOPS_VERSION=$(awk 'BEGIN{FS="="} /^VERSION/ {print $2}' .env)
 echo "Allure TestOps version from .env is $TESTOPS_VERSION"
+
+
+echo "Getting Allure TestOps version from .env"
+
+
 
 #getting the list of all the docker containers
 
