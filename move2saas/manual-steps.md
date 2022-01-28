@@ -64,9 +64,8 @@ the output will be like the following:
       SPRING_DATASOURCE_PASSWORD: P@assw0rd
       SPRING_DATASOURCE_USERNAME: uaa
     image: allure/allure-uaa:3.186.0
-(base) egorivanov@cheshimantu 31860 % 
 ```
-so you will see which username/passport is for which service
+so you will see which username/password is for which service
 
 Just in case.
 
