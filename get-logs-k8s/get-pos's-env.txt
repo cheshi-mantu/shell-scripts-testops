@@ -1,0 +1,2 @@
+get the environment of a pod
+kubectl -n <namespace> exec <pod_name> -- env ?
