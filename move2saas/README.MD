@@ -4,7 +4,7 @@
 
 yq is a command line tool that allows you processing of **yaml** files, we'll use it to extract database usernames from the configuration running on your machine.
 
-If you haven't change anything in the configuration you've downloaded, then we'll just assume report's database username will be **report** and uaa's database username will be **uaa**. 
+If you haven't change anything in the configuration you've downloaded, then we'll just assume report's database username will be **report** and uaa's database username will be **uaa**.
 
 If you have altered the usernames or if you aren't sure, it's better consult the people who did the installation and then alter the script or install `yq`.
 
