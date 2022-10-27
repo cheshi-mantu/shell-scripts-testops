@@ -1,5 +1,5 @@
-ALLURE_TOKEN=<token>
-ALLURE_ENDPOINT=https://<testops>
+ALLURE_TOKEN=$(cat ../secrets/token.txt)
+ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
 ALLURE_PROJECT_ID=<PROJECT_ID>
 RESTORE_TEST_CASES_PER_RUN=100
 

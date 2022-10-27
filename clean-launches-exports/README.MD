@@ -1,13 +1,13 @@
-# Set of scripts to help you with the Allure TestOps docker-compose deployment
+# Set of API calls to help with Allure TestOps routine
 
-## restore deleted test cases
+## Clean PDF exports
 
-Shell script to restore deleted test cases in a project
+Shell script to clean PDF exports for a designated project
 
 ### Content
 
-- restore-deleted-tc-in-project.sh 
-- README.MD
+- `clean-pdf-exports.sh`
+- `README.MD`
 
 ### Prerequisites
 
@@ -23,7 +23,7 @@ brew install jq
 
 ### How
 
-Make `restore-deleted-tc-in-project.sh` executable
+Make `clean-pdf-exports.sh` executable
 
 ```bash
 chmod +x 
@@ -35,11 +35,10 @@ update the following lines with real data
 ALLURE_TOKEN=<token>
 ALLURE_ENDPOINT=https://<testops>
 ALLURE_PROJECT_ID=<PROJECT_ID>
-RESTORE_TEST_CASES_PER_RUN=100
 ```
 
-Run `restore-deleted-tc-in-project.sh`
+Run `clean-pdf-exports.sh`
 
 ```bash
-./restore-deleted-tc-in-project.sh
+./clean-pdf-exports.sh
 ```

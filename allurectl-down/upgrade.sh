@@ -1,4 +1,4 @@
-#!/bin/bash
+
 # available options for *ux
 #  allurectl_darwin_amd64
 #  allurectl_linux_386
@@ -25,7 +25,7 @@ if [ ${CURRENT_OS} = "Linux" ]; then
         BINARY="${BINARY}386"
     fi
 elif [ ${CURRENT_OS} = "Darwin" ]; then
-    BINARY=${BINARY}"_darwin_amd64"
+        BINARY="${BINARY}_darwin_${OS_BITS}"
 fi
 
 echo "${TIME_STAMP} checking if ${BINARY} exists in latest release stream" | tee -a ${logfile}
