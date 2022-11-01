@@ -1,4 +1,4 @@
-# Set of scripts to help you with the Allure TestOps docker-compose deployment
+# Set of scripts to help you with the Allure TestOps
 
 ## restore deleted test cases
 
