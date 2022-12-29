@@ -26,7 +26,7 @@ brew install jq
 Make `clean-pdf-exports.sh` executable
 
 ```bash
-chmod +x 
+chmod +x clean-pdf-exports.sh 
 ```
 
 update the following lines with real data

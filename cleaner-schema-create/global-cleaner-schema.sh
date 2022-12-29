@@ -1,11 +1,12 @@
+DELETE_DELAY=48
+
 ALLURE_TOKEN=$(cat ../secrets/token.txt)
 ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
-ALLURE_PROJECT_ID=0
 
 TARGET_ARTEFACT="attachment scenario fixture"
 TEST_STATUS="passed failed broken unknown skipped"
 
-DELETE_DELAY=48
+
 
 for ARTEFACT in $TARGET_ARTEFACT
     do
