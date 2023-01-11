@@ -1,6 +1,6 @@
 ALLURE_TOKEN=$(cat ../secrets/token.txt)
 ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
-ALLURE_PROJECT_ID=0
+ALLURE_PROJECT_ID=10
 
 TARGET_ARTEFACT="attachment scenario fixture"
 TEST_STATUS="passed failed broken unknown skipped"
