@@ -11,7 +11,7 @@ for ARTEFACT in $TARGET_ARTEFACT
     do
         for STATUS in $TEST_STATUS
         do 
-            echo "Setting ${ARTEFACT} for ${STATUS} tests to expire after ${DELETE_DELAY} after creation \n"
+            echo "Marking ${ARTEFACT} for ${STATUS} tests for deletion after ${DELETE_DELAY} after creation \n"
             curl -X POST "${ALLURE_ENDPOINT}/api/rs/cleanerschema" --header "accept: */*" --header "Content-Type: application/json" --header "Authorization: Api-Token ${ALLURE_TOKEN}" -d "{\"projectId\": ${ALLURE_PROJECT_ID},\"status\": \"${STATUS}\",\"target\": \"${ARTEFACT}\",\"delay\": ${DELETE_DELAY}}"
             echo "\n"
         done
