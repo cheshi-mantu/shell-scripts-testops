@@ -40,7 +40,7 @@ REPORT_S3=(${REPORT_S3// / })
 echo "We'll back up the following:"
 echo "Database from report service from here: ${REPORT_DB[0]}"
 echo "Database from uaa service from here: ${UAA_DB[0]}"
-echo "Database from report service from here: ${REPORT_S3[0]}"
+echo "Artefacts from report service from here: ${REPORT_S3[0]}"
 
 sleep 3
 
