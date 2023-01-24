@@ -1,9 +1,11 @@
 #!/bin/bash
 clear
 
+echo "This works with the actual configs only" 
+
 TIME_STAMP=$(date +%Y%m%d-%H%M)
 
-echo "Getting docker-compose config"
+echo "Getting docker compose config"
 CONFIG=$(docker-compose config)
 
 RELEASE=$(echo "${CONFIG}" | grep 'allure/allure-uaa')
@@ -18,20 +20,20 @@ mkdir -p ${PWD}/backup/s3
 ls -l ./backup
 
 echo "Stopping the services"
-docker-compose stop uaa report gateway
+docker compose stop allure-uaa allure-report allure-gateway
 
 echo "Stopped services:"
-docker-compose ps | grep "Exit"
+docker compose ps | grep "Exit"
 
 # getting the list of services we need to backup
 
 echo "Gettings containers names"
 
-SERVICES4BACKUP=$(docker-compose ps | grep 'report-db\|uaa-db\|report-s3')
+SERVICES4BACKUP=$(docker compose ps | grep '\-db\|minio')
 
-REPORT_DB=$(echo "${SERVICES4BACKUP}" | grep report-db)
-UAA_DB=$(echo "${SERVICES4BACKUP}" | grep uaa-db)
-REPORT_S3=$(echo "${SERVICES4BACKUP}" | grep report-s3)
+REPORT_DB=$(echo "${SERVICES4BACKUP}" | grep report)
+UAA_DB=$(echo "${SERVICES4BACKUP}" | grep uaa)
+REPORT_S3=$(echo "${SERVICES4BACKUP}" | grep minio-local)
 
 REPORT_DB=(${REPORT_DB// / })
 UAA_DB=(${UAA_DB// / })
@@ -49,10 +51,10 @@ yq --version
 if [ $? -eq 0 ]; then
     echo "yq is found on this machine trying to parse the config"
     echo "Extracting report's database username"
-    R_DB_USERNAME=$(echo "${CONFIG}" | yq e '.services.report.environment.SPRING_DATASOURCE_USERNAME' -)
+    R_DB_USERNAME=$(echo "${CONFIG}" | yq e '.services.allure-report.environment.SPRING_DATASOURCE_USERNAME' -)
     # R_DB_PASS=$(echo "${CONFIG}" | yq e '.services.report.environment.SPRING_DATASOURCE_PASSWORD' -)
     echo "Extracting uaa's database username"
-    U_DB_USERNAME=$(echo "${CONFIG}" | yq e '.services.uaa.environment.SPRING_DATASOURCE_USERNAME' -)
+    U_DB_USERNAME=$(echo "${CONFIG}" | yq e '.services.allure-uaa.environment.SPRING_DATASOURCE_USERNAME' -)
     # U_DB_PASS=$(echo "${CONFIG}" | yq e '.services.uaa.environment.SPRING_DATASOURCE_PASSWORD' -)
 else
     echo "yq is not found on this machine"
@@ -75,6 +77,8 @@ docker cp ${REPORT_S3}:/data/. ${PWD}/backup/s3
 
 
 rm -frd ${PWD}/backup/s3/.minio.sys
+rm -frd ${PWD}/backup/s3/.*
+
 echo "Creating the single archive fo"
 tar -zcvf ${TIME_STAMP}_testops_${RELEASE}.tar.gz backup/
 if [ $? -eq 0 ]; then
