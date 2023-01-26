@@ -1,4 +1,4 @@
-# Data preparation for moving demo docker-compose deployment to SaaS
+# Data preparation for moving demo docker compose deployment to SaaS
 
 Demo means all the components are running in the containers
 
