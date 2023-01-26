@@ -1,6 +1,6 @@
-# Data preparation for moving standard docker-compose deployment to SaaS
+# Data preparation for moving demo docker-compose deployment to SaaS
 
-Standard means all the components are running in the containers
+Demo means all the components are running in the containers
 
 ## Preparations
 
