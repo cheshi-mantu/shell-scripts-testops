@@ -1,2 +1,4 @@
-curly/jira-tests.md
-secrets/*
+secrets/endpoint.txt
+secrets/token.txt
+secrets/token.txt
+secrets/endpoint.txt
