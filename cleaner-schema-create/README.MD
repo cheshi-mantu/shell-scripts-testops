@@ -5,8 +5,19 @@
 ### Content
 
 - `global-cleaner-schema.sh`
+  - tries to set same clean delay for all the artefacts on global level
 - `project-cleaner-schema.sh`
+  - tries to set same clean delay for all the artefacts in a given project
+- `all-projects-cleaner-schema-create.sh`
+  - gets all projects in the instance and tries to set same clean delay for all the artefacts
+  - use this one carefully
 - `README.MD`
+
+### Preconditions
+
+- [jq is required](https://github.com/stedolan/jq) for some scripts to work
+
+
 
 ### How
 

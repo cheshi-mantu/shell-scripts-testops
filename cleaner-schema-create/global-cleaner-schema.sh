@@ -1,7 +1,7 @@
-DELETE_DELAY=48
+DELETE_DELAY=96
 
-ALLURE_TOKEN=$(cat ../secrets/token.txt)
-ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/testing_token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/testing_endpoint.txt)
 
 TARGET_ARTEFACT="attachment scenario fixture"
 TEST_STATUS="passed failed broken unknown skipped"
