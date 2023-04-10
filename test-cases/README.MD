@@ -6,7 +6,10 @@ Shell script to restore deleted test cases in a project
 
 ### Content
 
-- restore-deleted-tc-in-project.sh 
+- `restore-deleted-tc-in-project.sh`
+  - restoration of all deleted test cases in a given project
+- `remove-test-keys.sh`
+  - remove test key (link to other TMS) from all test cases in a given project
 - README.MD
 
 ### Prerequisites
@@ -23,10 +26,12 @@ brew install jq
 
 ### How
 
-Make `restore-deleted-tc-in-project.sh` executable
+Make `.sh` file executable
+
+Example
 
 ```bash
-chmod +x 
+chmod +x restore-deleted-tc-in-project.sh
 ```
 
 update the following lines with real data
