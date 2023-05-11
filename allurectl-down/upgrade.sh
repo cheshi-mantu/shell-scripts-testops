@@ -1,4 +1,4 @@
-
+#!/bin/bash
 # available options for *ux
 #  allurectl_darwin_amd64
 #  allurectl_linux_386
@@ -12,6 +12,11 @@ CURRENT_OS=$(uname -s)
 OS_BITS=$(uname -m)
 BINARY="allurectl"
 CURRENT_VERSION=$(./${BINARY} --version)
+WANT_THIS=$1
+
+if [ -z $WANT_THIS]; then
+	WANT_THIS="latest"
+fi
 
 echo "${TIME_STAMP} Current version is ${CURRENT_VERSION}" | tee -a ${logfile}
 
@@ -25,18 +30,30 @@ if [ ${CURRENT_OS} = "Linux" ]; then
         BINARY="${BINARY}386"
     fi
 elif [ ${CURRENT_OS} = "Darwin" ]; then
-        BINARY="${BINARY}_darwin_${OS_BITS}"
+    BINARY=${BINARY}"_darwin_amd64"
 fi
 
 echo "${TIME_STAMP} checking if ${BINARY} exists in latest release stream" | tee -a ${logfile}
 
-wget --spider "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
+
+if [ $WANT_THIS = "latest" ]; then
+	wget --spider "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
+else
+	wget --spider "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"	
+fi
+
 
 if [ $? -eq 0 ]; then
     echo "Binary exists, downloading"
     
-    wget "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
-    chmod +x ${BINARY}
+
+	if [ $WANT_THIS = "latest" ]; then
+		wget "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
+	else
+		wget "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"		
+	fi
+	
+	chmod +x ${BINARY}
     UPDATED_VERSION=$(./${BINARY} --version)
     
     if [ "${CURRENT_VERSION}" = "${UPDATED_VERSION}" ]; then
