@@ -1,4 +1,5 @@
 # this is for gitlab only at the moment
+# launch data need to be set via ENV variables for this script to work
 
 if [ ${CI_PIPELINE_SOURCE} = "api" ]; then
 
