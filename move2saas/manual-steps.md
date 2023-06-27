@@ -1,6 +1,6 @@
 # Data preparation for moving demo docker compose deployment to SaaS
 
-Minimal release of Allure TestOps deployed locally is 3.193.x, if your release is less, you need to upgrade to 3.193 or to the most recent release, then start these steps.
+Minimal release of Allure TestOps deployed locally is **3.193.x**, if your release is less, you need to upgrade to 3.193 or to the most recent release, then start these steps.
 
 ## Preparations
 
