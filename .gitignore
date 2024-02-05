@@ -1,3 +1,1 @@
-secrets/endpoint.txt
-secrets/token.txt
-.txt
+**/*.txt
