@@ -14,7 +14,7 @@ BINARY="allurectl"
 CURRENT_VERSION=$(./${BINARY} --version)
 WANT_THIS=$1
 
-if [ -z $WANT_THIS]; then
+if [ -z $WANT_THIS ]; then
 	WANT_THIS="latest"
 fi
 
@@ -30,7 +30,11 @@ if [ ${CURRENT_OS} = "Linux" ]; then
         BINARY="${BINARY}386"
     fi
 elif [ ${CURRENT_OS} = "Darwin" ]; then
-    BINARY=${BINARY}"_darwin_amd64"
+    if [ ${OS_BITS} = "arm64" ]; then
+        BINARY="${BINARY}_darwin_arm64"
+    else
+        BINARY=${BINARY}"_darwin_amd64"
+    fi
 fi
 
 echo "${TIME_STAMP} checking if ${BINARY} exists in latest release stream" | tee -a ${logfile}
@@ -39,7 +43,7 @@ echo "${TIME_STAMP} checking if ${BINARY} exists in latest release stream" | tee
 if [ $WANT_THIS = "latest" ]; then
 	wget --spider "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
 else
-	wget --spider "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"	
+	wget --spider "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"
 fi
 
 
@@ -50,7 +54,7 @@ if [ $? -eq 0 ]; then
 	if [ $WANT_THIS = "latest" ]; then
 		wget "https://github.com/allure-framework/allurectl/releases/latest/download/${BINARY}"
 	else
-		wget "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"		
+		wget "https://github.com/allure-framework/allurectl/releases/download/${WANT_THIS}/${BINARY}"
 	fi
 	
 	chmod +x ${BINARY}
@@ -64,7 +68,7 @@ if [ $? -eq 0 ]; then
         echo "$(date +%Y%m%d-%H%M%S) Removing previous version" | tee -a ${logfile}
         rm allurectl
         mv ${BINARY} allurectl
-        echo "${TIME_STAMP} upgrated ${CURRENT_VERSION} >> ${UPDATED_VERSION}" | tee -a ${logfile}
+        echo "${TIME_STAMP} upgraded ${CURRENT_VERSION} >> ${UPDATED_VERSION}" | tee -a ${logfile}
         echo "Just in case $(./allurectl --version)" | tee -a ${logfile}
         echo "############## weeee ####################"  | tee -a ${logfile}
     fi
