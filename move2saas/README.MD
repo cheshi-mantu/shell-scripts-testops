@@ -25,36 +25,29 @@ chmod +x /usr/bin/yq
 ```
 ## Creating the backup to restore to SaaS
 
-1. Clone this whole repository to the machine where Allure TestOps is running as docker-compose deployment.
+1. Clone this whole repository to the machine and folder where Allure TestOps is running as docker-compose deployment(where .env and docker-compose.yml files placed).
 
+```bash
+cd path/to/allure-testops
+```
 ```bash
 git clone https://github.com/cheshi-mantu/shell-scripts-testops.git
 ```
 
-2. Go to `move2saas` directory in the downloaded repository
+2. Copy `pack4saas.sh` script file to the directory where `docker-compose.yml` and `.env` files reside
 
 ```bash
-cd shell-scripts-testops/move2saas
+cp ./shell-scripts-testops/move2saas/pack4saas.sh ./pack4saas.sh
 ```
 
-3. Copy `pack4saas.sh` script file to the directory where `docker-compose.yml` and `.env` files reside
-
-```bash
-cp pack4saas.sh /path/to/allure/testops/
-```
-4. Go to the Allure TestOps files
-
-```bash
-cd /path/to/allure/testops/
-```
-5. Make shell script executable
+3. Make shell script executable
 
 ```bash
 chmod +x pack4saas.sh
 ```
-6. Run the script and get the archive with the database dump and files from S3
+4. Run the script and get the archive with the database dump and files from S3
 
 ```bash
 ./pack4saas.sh
 ```
-7. Collect the file and share with Qameta's support.
+5. Collect the file and share with Qameta's support.
