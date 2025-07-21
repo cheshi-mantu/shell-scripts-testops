@@ -17,7 +17,7 @@ Open DevTools, see what FE does and mimic its actions to get all what you need i
 
 # Limitations
 
-Allure TestOps uses Spring Boot. All big lists are paginated. The max amount of items can be returned in the scope of one page is 2000. If the request you are using returns more, then 
+Allure TestOps uses Spring Boot. All big lists are paginated. The max amount of items can be returned in the scope of one page is 2000. If the request you are using returns more, then you will need to implement the processing of the painated results on your tool side.
 
 # Authentication
 
