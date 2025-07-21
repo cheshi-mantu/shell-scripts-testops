@@ -1,6 +1,23 @@
 # Why
 
-Here I have collected set of shell scripts with examples of the Allure TestOps API calls usage.
+Here I have collected set of shell scripts with examples of the Allure TestOps API calls usage to help ones struggling with the application of the described in swagger.
+
+# How
+
+Allure TestOps has no end-user API calls. All API calls you see in swagger is for the application's Front End only.
+
+- What does it mean?
+- It basically means each API call is intended to execute one action and get only the portion of data that FE requires in a certain place of UI. No less and no more.
+- And?
+- And this also means in the vast majority of cases you won't be able to get all data you might need – from a single API call.
+
+To get the data you need, you need to see where this data is available in the UI and execute API calls in a way FE does it.
+
+Open DevTools, see what FE does and mimic its actions to get all what you need in the FE way.
+
+# Limitations
+
+Allure TestOps uses Spring Boot. All big lists are paginated. The max amount of items can be returned in the scope of one page is 2000. If the request you are using returns more, then 
 
 # Authentication
 
