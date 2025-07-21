@@ -1,3 +1,5 @@
+# in order to work script requires https://github.com/jqlang/jq to be installed in your system
+
 ALLURE_TOKEN=$(cat ../secrets/xyz-token.txt)
 ALLURE_ENDPOINT=$(cat ../secrets/xyz-endpoint.txt)
 
