@@ -21,10 +21,6 @@ JWT_TOKEN=$(curl -s -X POST "${ALLURE_ENDPOINT}/api/uaa/oauth/token" \
 
 echo "JWT token: ${JWT_TOKEN}"
 
-# curl -X GET "${ALLURE_ENDPOINT}/api/tag/suggest?query=testrail%3A&projectId=${PROJECT_ID}&page=${countPage}&size=${pageSize}&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${JWT_TOKEN}"
-
-
-
 while ! ${lastPage}; do
     echo "Getting page ${countPage}"
     RESPONSE=$(curl -X GET "${ALLURE_ENDPOINT}/api/tag/suggest?query=testrail%3A&projectId=${PROJECT_ID}&page=${countPage}&size=${pageSize}&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${JWT_TOKEN}")
@@ -55,5 +51,5 @@ echo "Tags: ${TAGS}"
 
 for TAG in ${TAGS}; do
 	echo "Deleting tag ${TAG}"
-curl -X DELETE ${ALLURE_ENDPOINT}/api/tag/${TAG} -H 'accept: */*' --header "Authorization: Bearer ${JWT_TOKEN}"
+curl -X DELETE ${ALLURE_ENDPOINT}/api/tag/${TAG} -H 'accept: */*' --header "Authorization: Bearer ${JWT_TOKEN}" 1> /dev/null
 done
