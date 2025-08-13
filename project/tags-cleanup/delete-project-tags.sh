@@ -44,10 +44,16 @@ echo "Dumping the list of projects to file ${PROJECT_TAGS_LIST}"
 cat <<EOF > ${PROJECT_TAGS_LIST}
 ${TAGS}
 EOF
-
 fi
+
+## that was just a dirty move to get rid of the empty strings
 
 echo "Reading the list of projects from file ${PROJECT_TAGS_LIST}"
 TAGS=$(<${PROJECT_TAGS_LIST})
 
 echo "Tags: ${TAGS}"
+
+for TAG in ${TAGS}; do
+	echo "Deleting tag ${TAG}"
+curl -X DELETE ${ALLURE_ENDPOINT}/api/tag/${TAG} -H 'accept: */*' --header "Authorization: Bearer ${JWT_TOKEN}"
+done
