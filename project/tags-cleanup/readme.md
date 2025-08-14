@@ -24,7 +24,6 @@ Most likely no. If you've finalised the migration, then tags can be removed from
 
 Script is splitted in several files intentionally – to provide the end user the chance to reign over the process.
 
-
 ## How to
 
 1. Open `delete-project-tags.sh`
