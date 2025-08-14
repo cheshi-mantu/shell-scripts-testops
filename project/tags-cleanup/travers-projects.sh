@@ -1,5 +1,5 @@
-ALLURE_TOKEN=$(cat ../../secrets/testing-token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/testing-endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/xyz-token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/xyz-endpoint.txt)
 pageSize=2000
 countPage=0
 lastPage=false
@@ -14,6 +14,7 @@ else
 	echo "Projects: ${PROJECTS}"
 	for PROJECT in ${PROJECTS}; do
 		echo "Working with project ${PROJECT}"
+		./delete-project-tags.sh ${PROJECT}
 	done
 fi
 

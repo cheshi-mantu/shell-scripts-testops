@@ -3,13 +3,13 @@
 ALLURE_TOKEN=$(cat ../secrets/xyz-token.txt)
 ALLURE_ENDPOINT=$(cat ../secrets/xyz-endpoint.txt)
 
-NEW_NAME="Geralt"
-NEW_SURNAME="Rivian"
-NEW_EMAIL="something@quack.quack"
-NEW_USERNAME="geralt"
-NEW_PASSWORD="new-new-new-password"
+NEW_NAME='Geralt'
+NEW_SURNAME='Rivian'
+NEW_EMAIL='something@quack.quack'
+NEW_USERNAME='geralt'
+NEW_PASSWORD='new-new-new-password'
 # admin, user, guest
-NEW_ROLE="user"
+NEW_ROLE='user'
 
 # echo "ALLURE_TOKEN: ${ALLURE_TOKEN}"
 # echo "ALLURE_ENDPOINT: ${ALLURE_ENDPOINT}"

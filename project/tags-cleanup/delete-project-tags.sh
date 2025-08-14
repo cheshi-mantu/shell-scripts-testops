@@ -3,8 +3,8 @@ if [ -z $1 ]; then
 	exit 1
 else 
 
-ALLURE_TOKEN=$(cat ../../secrets/testing-token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/testing-endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/xyz-token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/xyz-endpoint.txt)
 pageSize=2000
 countPage=0
 lastPage=false

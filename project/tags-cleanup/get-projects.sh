@@ -1,5 +1,5 @@
-ALLURE_TOKEN=$(cat ../../secrets/testing-token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/testing-endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/xyz-token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/xyz-endpoint.txt)
 pageSize=1999
 countPage=0
 lastPage=false
@@ -15,7 +15,7 @@ JWT_TOKEN=$(curl -s -X POST "${ALLURE_ENDPOINT}/api/uaa/oauth/token" \
      --form "token=${ALLURE_TOKEN}" \
      | jq -r .access_token)
 
-echo "JWT token: ${JWT_TOKEN}"
+# echo "JWT token: ${JWT_TOKEN}"
 
 while ! ${lastPage}; do
     echo "Getting page ${countPage}"
