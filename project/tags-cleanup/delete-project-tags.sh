@@ -3,13 +3,14 @@ if [ -z $1 ]; then
 	exit 1
 else 
 
-ALLURE_TOKEN=$(cat ../../secrets/xyz-token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/xyz-endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/endpoint.txt)
 pageSize=2000
 countPage=0
 lastPage=false
 PROJECT_ID=$1
 PROJECT_TAGS_LIST=$1-all-tags.txt
+TAG_PREFIX="testrail:"
 
 JWT_TOKEN=$(curl -s -X POST "${ALLURE_ENDPOINT}/api/uaa/oauth/token" \
      --header "Expect:" \
@@ -23,7 +24,7 @@ echo "JWT token: ${JWT_TOKEN}"
 
 while ! ${lastPage}; do
     echo "Getting page ${countPage}"
-    RESPONSE=$(curl -X GET "${ALLURE_ENDPOINT}/api/tag/suggest?query=testrail%3A&projectId=${PROJECT_ID}&page=${countPage}&size=${pageSize}&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${JWT_TOKEN}")
+    RESPONSE=$(curl -X GET "${ALLURE_ENDPOINT}/api/tag/suggest?query=${TAG_PREFIX}&projectId=${PROJECT_ID}&page=${countPage}&size=${pageSize}&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${JWT_TOKEN}")
     if [ ${countPage} = 0 ]; then
         TAGS="$(jq .content[].id <<< $RESPONSE)"
     else
@@ -51,5 +52,5 @@ echo "Tags: ${TAGS}"
 
 for TAG in ${TAGS}; do
 	echo "Deleting tag ${TAG}"
-curl -X DELETE ${ALLURE_ENDPOINT}/api/tag/${TAG} -H 'accept: */*' --header "Authorization: Bearer ${JWT_TOKEN}" 1> /dev/null
+    curl -X DELETE ${ALLURE_ENDPOINT}/api/tag/${TAG} -H 'accept: */*' --header "Authorization: Bearer ${JWT_TOKEN}" 2> /dev/null
 done

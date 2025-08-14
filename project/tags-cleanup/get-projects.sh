@@ -1,5 +1,5 @@
-ALLURE_TOKEN=$(cat ../../secrets/xyz-token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/xyz-endpoint.txt)
+ALLURE_TOKEN=$(cat ../../secrets/token.txt)
+ALLURE_ENDPOINT=$(cat ../../secrets/endpoint.txt)
 pageSize=1999
 countPage=0
 lastPage=false
