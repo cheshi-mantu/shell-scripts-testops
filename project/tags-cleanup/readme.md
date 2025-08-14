@@ -38,5 +38,5 @@ Script is splitted in several files intentionally – to provide the end user th
       2. save
    2. create file `token.txt`
       1. add [API token](https://docs.qameta.io/allure-testops/integrations/jenkins/#21-create-a-token-in-allure-testops)
-
+4. Finally, run ./tags-cleanup.sh
 
