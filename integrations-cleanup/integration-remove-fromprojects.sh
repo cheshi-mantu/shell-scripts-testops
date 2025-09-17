@@ -12,7 +12,3 @@ for ID in ${RESULT}
         curl -X DELETE "${ALLURE_ENDPOINT}/api/rs/integration/${ALLURE_INTEGRATION_ID}/project/${ID}" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}"
     done
 
-# danger zone
-# this will also delete the integration completely from the global settings
-# curl -X DELETE "${ALLURE_ENDPOINT}/api/rs/integration/${ALLURE_INTEGRATION_ID}" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}"
-

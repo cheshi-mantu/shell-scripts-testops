@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ALLURE_TOKEN=$(cat ../../secrets/token.txt)
 ALLURE_ENDPOINT=$(cat ../../secrets/endpoint.txt)
 pageSize=1999
