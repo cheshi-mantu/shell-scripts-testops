@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ALLURE_TOKEN=$(cat ../../secrets/token.txt)
 ALLURE_ENDPOINT=$(cat ../../secrets/endpoint.txt)
 pageSize=2000
@@ -17,5 +19,3 @@ else
 		./delete-project-tags.sh ${PROJECT}
 	done
 fi
-
-

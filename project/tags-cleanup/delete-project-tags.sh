@@ -10,7 +10,7 @@ countPage=0
 lastPage=false
 PROJECT_ID=$1
 PROJECT_TAGS_LIST=$1-all-tags.txt
-TAG_PREFIX="testrail:"
+TAG_PREFIX=''
 
 JWT_TOKEN=$(curl -s -X POST "${ALLURE_ENDPOINT}/api/uaa/oauth/token" \
      --header "Expect:" \
@@ -20,7 +20,8 @@ JWT_TOKEN=$(curl -s -X POST "${ALLURE_ENDPOINT}/api/uaa/oauth/token" \
      --form "token=${ALLURE_TOKEN}" \
      | jq -r .access_token)
 
-echo "JWT token: ${JWT_TOKEN}"
+# for debugging purposes
+# echo "JWT token: ${JWT_TOKEN}"
 
 while ! ${lastPage}; do
     echo "Getting page ${countPage}"
@@ -48,7 +49,8 @@ fi
 echo "Reading the list of projects from file ${PROJECT_TAGS_LIST}"
 TAGS=$(<${PROJECT_TAGS_LIST})
 
-echo "Tags: ${TAGS}"
+# for debugging purposes
+# echo "Tags: ${TAGS}"
 
 for TAG in ${TAGS}; do
 	echo "Deleting tag ${TAG}"
