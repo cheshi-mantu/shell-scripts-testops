@@ -1,6 +1,6 @@
 ALLURE_TOKEN=$(cat ../secrets/token.txt)
 ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
-ALLURE_INTEGRATION_ID=15
+ALLURE_INTEGRATION_ID=$1
 FILE_PROJECTS_LIST=projects.txt
 
 PROJECTS=$(curl -X GET "${ALLURE_ENDPOINT}/api/rs/integration/${ALLURE_INTEGRATION_ID}/project?page=0&size=10000" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}" | jq '.content[].id')
