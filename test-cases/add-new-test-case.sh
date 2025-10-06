@@ -1,23 +1,36 @@
-ALLURE_TOKEN=$(cat ../secrets/token.txt)
-ALLURE_ENDPOINT=$(cat ../secrets/endpoint.txt)
-ALLURE_PROJECT_ID=$(cat ../secrets/project.id)
+TESTOPS_TOKEN=$(cat ../secrets/token.txt)
+TESTOPS_ENDPOINT=$(cat ../secrets/endpoint.txt)
+TESTOPS_PROJECT_ID=$(cat ../secrets/project.id)
 
 clear
 
-BEARER_TOKEN=$(../auth-bearer/get-bearer-token.sh ${ALLURE_ENDPOINT} ${ALLURE_TOKEN})
+BEARER_TOKEN=$(../auth-bearer/get-bearer-token.sh ${TESTOPS_ENDPOINT} ${TESTOPS_TOKEN})
 
-RESULT=$(curl -X GET "${ALLURE_ENDPOINT}/api/rs/testcase/deleted?projectId=${ALLURE_PROJECT_ID}&page=0&size=${RESTORE_TEST_CASES_PER_RUN}" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}")
-
-echo "Found deleted test cases in the project ${ALLURE_PROJECT_ID}": 
-
-IDS=$(echo $RESULT | jq .content[].id)
-
-echo ${IDS}
-
-
-for ID in ${IDS}
-do
-    echo "Restoring ${ID} \n"
-    curl -X PATCH ${ALLURE_ENDPOINT}/api/rs/testcase/${ID} --header "accept: */*" --header "Content-Type: application/json" --header "Authorization: Api-Token ${ALLURE_TOKEN}" -d "{\"deleted\": false}"
-    echo "\n"
-done
+curl -X POST "${TESTOPS_ENDPOINT}/api/rs/testcase?v2=true" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer ${BEARER_TOKEN}" \
+  -d '{
+  "projectId": '"${TESTOPS_PROJECT_ID}"',
+  "name": "Manual Test Case with Nested Steps",
+  "description": "Test case in one go",
+  "scenario": {
+    "steps": [
+      {
+        "type": "body",
+        "body": "Step 1: Open application",
+        "steps": [
+          {
+            "type": "body",
+            "body": "Step 1.1: Navigate to login page",
+            "steps": [
+              {
+                "type": "body",
+                "body": "Step 1.1.1: Verify page URL is correct"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}'
