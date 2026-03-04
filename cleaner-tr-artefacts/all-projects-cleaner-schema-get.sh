@@ -1,13 +1,16 @@
-ALLURE_TOKEN=$(cat ../../secrets/testing_token.txt)
-ALLURE_ENDPOINT=$(cat ../../secrets/testing_endpoint.txt)
+TESTOPS_TOKEN=$(cat ../secrets/token.txt)
+TESTOPS_ENDPOINT=$(cat ../secrets/endpoint.txt)
+TESTOPS_PROJECT_ID=10
+
+BEARER_TOKEN=$(../auth-bearer/get-bearer-token.sh ${TESTOPS_ENDPOINT} ${TESTOPS_TOKEN})
 
 
-ALL_PROJECTS=$(curl -X GET "${ALLURE_ENDPOINT}/api/rs/project?page=0&size=10000&sort=id%2CASC" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}"  | jq .content[].id)
+ALL_PROJECTS=$(curl -X GET "${TESTOPS_ENDPOINT}/api/rs/project?page=0&size=10000&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${BEARER_TOKEN}"  | jq .content[].id)
 
-for ALLURE_PROJECT_ID in ${ALL_PROJECTS}
+for TESTOPS_PROJECT_ID in ${ALL_PROJECTS}
 
 do 
-    echo "\nProject ${ALLURE_PROJECT_ID}" | tee -a projects-cleanup-existing.txt
-    curl -X GET "${ALLURE_ENDPOINT}/api/rs/cleanerschema?projectId=${ALLURE_PROJECT_ID}&page=0&size=1000&sort=id%2CASC" --header "accept: */*" --header "Authorization: Api-Token ${ALLURE_TOKEN}" | tee -a projects-cleanup-existing.txt
+    echo "\nProject ${TESTOPS_PROJECT_ID}" | tee -a projects-cleanup-existing.txt
+    curl -X GET "${TESTOPS_ENDPOINT}/api/rs/cleanerschema?projectId=${TESTOPS_PROJECT_ID}&page=0&size=1000&sort=id%2CASC" --header "accept: */*" --header "Authorization: Bearer ${BEARER_TOKEN}" | tee -a projects-cleanup-existing.txt
 done
 
