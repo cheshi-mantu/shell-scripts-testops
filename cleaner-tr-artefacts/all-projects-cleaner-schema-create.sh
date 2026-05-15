@@ -1,5 +1,12 @@
-TESTOPS_TOKEN=$(cat ../secrets/token.txt)
-TESTOPS_ENDPOINT=$(cat ../secrets/endpoint.txt)
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    export TESTOPS_TOKEN=$(security find-generic-password -a "$USER" -s "QAMETA_ALLURE_TOKEN" -w)
+    export TESTOPS_ENDPOINT=$(security find-generic-password -a "$USER" -s "QAMETA_ALLURE_ENDPOINT" -w)
+else
+    export TESTOPS_TOKEN=$(cat ../secrets/token.txt)
+    export TESTOPS_ENDPOINT=$(cat ../secrets/endpoint.txt)
+fi
+
 
 BEARER_TOKEN=$(../auth-bearer/get-bearer-token.sh ${TESTOPS_ENDPOINT} ${TESTOPS_TOKEN})
 
