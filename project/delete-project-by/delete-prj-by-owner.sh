@@ -9,7 +9,8 @@ else
     export TESTOPS_ENDPOINT=$(cat ../../secrets/endpoint.txt)
 fi
 
-TARGET_USER=${1:-vitalyb}
+# isernam is the default username which project we delete
+TARGET_USER=${1:-username}
 PAGE_SIZE=2000
 
 BEARER_TOKEN=$(../../auth-bearer/get-bearer-token.sh ${TESTOPS_ENDPOINT} ${TESTOPS_TOKEN})
