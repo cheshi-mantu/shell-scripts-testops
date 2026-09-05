@@ -24,3 +24,6 @@ echo "tags: ${JSON_TAGS}"
 
 curl -X PATCH "${ALLURE_ENDPOINT}/api/rs/launch/${LAUNCH_ID}" --header "accept: */*" --header "Content-Type: application/json" --header "Authorization: Api-Token ${ALLURE_TOKEN}" --data "{\"name\": \"${LAUNCH_NAME}\",\"tags\":[${JSON_TAGS}]}"
 fi
+
+
+
